@@ -1,21 +1,143 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { View, KeyboardAvoidingView,Image,TextInput, TouchableOpacity,Text,StyleSheet, Animated } from 'react-native';
+import axios from "axios";
+
 
 export default function App() {
+
+
+    const [ offset ] = useState(new Animated.ValueXY({x: 0, y: 80}));
+    const [ userName,setUserName] = useState ("");
+    const [ userPassword,setUserPassword] = useState ("");
+
+    const signIn = () => {
+      axios.post("http://10.0.2.2:5000/api/aluno/login", { 
+        email:userName,
+        senha:userPassword
+      }).then((response) => alert (` Seja Bem vindo, ${response.data.nome}`))
+      .catch((error) => {
+        const { response } = error;
+        if (response !== undefined){
+          alert (response.data.message);
+        }
+        else alert (`Nao foi possivel logar`);
+     })
+    }; 
+    useEffect(() => {
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+
+      }).start();
+    }, []);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <KeyboardAvoidingView style={styles.background}>
+      <View style={styles.containerLogo}>
+        <Image 
+          source={require('./assets/logo-etec.png')}
+        />
+      </View>
+
+      <Animated.View styles={[
+        styles.container,
+        {
+          transform: [
+            {translateY: offset.y }
+          ]
+        }
+        ]}>
+          <TextInput
+            value = {userName}
+            style={styles.input}
+            placeholder="Email"
+            autoCorrect={false}
+            onChangeText={(value) => setUserName(value)}
+          />
+
+           <TextInput
+           value = {userPassword}
+            style={styles.input}
+            placeholder="Senha"
+            autoCorrect={false}
+            onChangeText={(value) => setUserPassword(value)}
+            secureTextEntry = {true}
+          />
+
+          <TouchableOpacity style={styles.btnSubmit} onPress = {signIn}>
+            <Text style={styles.submitText}> Acessar </Text>
+          </TouchableOpacity>
+
+          
+          <TouchableOpacity style={styles.btnRegister}>
+            <Text style={styles.registerText}> Criar conta gratuita </Text>
+          </TouchableOpacity>
+      </Animated.View>
+    </KeyboardAvoidingView>
+
   );
 }
+ const styles = StyleSheet.create({
 
-const styles = StyleSheet.create({
-  container: {
+  background:{
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#000000'
+
   },
-});
+  containerLogo:{
+    flex: 0.6,
+    justifyContent: 'center'
+  },
+  container:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 90,
+    paddingBottom: 50
+
+  },
+  input:{
+    backgroundColor: '#FFF',
+    width: 300,
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 17,
+    borderRadius: 7,
+    padding: 10   
+  },
+  btnSubmit:{
+    backgroundColor: '#778899',
+    width: 300,
+    height: 45,
+    alignItems: 'center',
+    borderRadius: 7,
+    alignItems: 'center',
+    justifyContent: 'center'
+
+
+  },
+  submitText:{
+    color: '#FFF',
+    fontSize: 18
+  },
+  btnRegister:{
+    marginTop: 10,
+    backgroundColor: '#778899',
+    width: 300,
+    height: 45,
+    alignItems: 'center',
+    borderRadius: 7,
+    alignItems: 'center',
+    justifyContent: 'center'
+    
+
+  },
+
+  registerText:{
+    color: '#FFF',
+    fontSize: 18
+    
+  }
+ });
+
