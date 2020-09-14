@@ -78,7 +78,7 @@ export default function Login() {
 
           
           <TouchableOpacity style={styles.btnRegister} onPress={signUp}>
-            <Text style={styles.registerText}> Criar conta gratuita </Text>
+            <Text style={styles.registerText}> Criar </Text>
           </TouchableOpacity>
       </Animated.View>
     </KeyboardAvoidingView>
@@ -145,8 +145,7 @@ export default function Login() {
 
   registerText:{
     color: '#FFF',
-    fontSize: 18
-    
+    fontSize: 18  
   }
  });
 

@@ -11,6 +11,7 @@ import { View,
     import axios from "axios";
 import { api } from '../util/env';
 import { useNavigation } from '@react-navigation/native';
+import { color } from 'react-native-reanimated';
 
     export default function CadastroUsuario() {
 
@@ -39,11 +40,11 @@ import { useNavigation } from '@react-navigation/native';
     }; 
 
 return (
-<View>
+<View style={styles.background}>
 
     <TextInput
     value = {userRm}
-    //style={styles.input}
+    style={styles.input}
     placeholder="RM"
     autoCorrect={false}
     onChangeText={(value) => setUserRm(value)}
@@ -52,7 +53,7 @@ return (
 
   <TextInput
   value = {userNome}
- // style={styles.input}
+  style={styles.input}
   placeholder="Nome"
   autoCorrect={false}
   onChangeText={(value) => setUserNome(value)}
@@ -60,7 +61,7 @@ return (
 
 <TextInput
   value = {userEmail}
-  //style={styles.input}
+  style={styles.input}
   placeholder="Email"
   autoCorrect={false}
   onChangeText={(value) => setUserEmail(value)}
@@ -68,7 +69,7 @@ return (
 
 <TextInput
   value = {userSenha}
-  //style={styles.input}
+  style={styles.input}
   placeholder="Senha"
   autoCorrect={false}
   onChangeText={(value) => setUserSenha(value)}
@@ -76,17 +77,56 @@ return (
 
 <TextInput
   value = {userCurso}
-  //style={styles.input}
+  style={styles.input}
   placeholder="Curso"
   autoCorrect={false}
   onChangeText={(value) => setUserCurso(value)}
 />
 
-<TouchableOpacity onPress={signUp}>
-            <Text> Salvar </Text>
+<TouchableOpacity style={styles.btnSubmit} onPress={signUp}>
+            <Text style={styles.btnText}> Salvar </Text>
 </TouchableOpacity>
 
 </View>
 )
-
 }
+
+const styles = StyleSheet.create({
+
+  background:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#060613'
+
+  },
+
+  input:{
+    backgroundColor: '#FFF',
+    width: 300,
+    marginBottom: 15,
+    color: '#222',
+    fontSize: 17,
+    borderRadius: 7,
+    padding: 10   
+  },
+
+  btnSubmit:{
+    backgroundColor: '#778899',
+    width: 300,
+    height: 50,
+    alignItems: "center",
+    borderRadius: 7,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    elevation: 1.5
+      
+  },
+  btnText:{
+    color: '#FFF',
+    fontSize: 18
+  }
+
+});
+
