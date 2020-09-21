@@ -14,16 +14,22 @@ export default function Login() {
     const [ userPassword,setUserPassword] = useState ("");
     const navigation =  useNavigation();
 
+    //Navegando para o formulario de cadastro 
     const signUp = () => navigation.navigate("cadastroUsuario");
     
 
     
-
+    //Logando com um usuario 
     const signIn = () => {
-      axios.post( api("aluno/login"), { 
+      axios.post( api("usuario/login"), { 
         email:userName,
         senha:userPassword
-      }).then((response) => alert (` Seja Bem vindo, ${response.data.nome}`))
+      }).then((response) => {
+        alert (` Seja Bem vindo, ${response.data.nome}`);
+        if(response.data.tipo !== "ALUNO"){
+          navigation.navigate("adm");
+        }
+      })
       .catch((error) => {
         const { response } = error;
         if (response !== undefined){
@@ -32,6 +38,7 @@ export default function Login() {
         else alert (`Nao foi possivel logar`);
      })
     }; 
+    //Tela inicial 
     useEffect(() => {
       Animated.spring(offset.y, {
         toValue: 0,
@@ -85,6 +92,7 @@ export default function Login() {
 
   );
 }
+//Alterando Estilos 
  const styles = StyleSheet.create({
 
   background:{

@@ -23,7 +23,7 @@ import { color } from 'react-native-reanimated';
     const navigation =  useNavigation();
 
     const signUp = () => {
-      axios.post(api("aluno"), { 
+      axios.post(api("usuario"), { 
         email:userEmail,
         senha:userSenha,
         rm:userRm,
@@ -31,6 +31,7 @@ import { color } from 'react-native-reanimated';
         nome:userNome
       }).then((response) => navigation.goBack())
       .catch((error) => {
+        console.log("error => ", error);
         const { response } = error;
         if (response !== undefined){
           alert (response.data.message);
