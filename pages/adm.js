@@ -30,14 +30,21 @@ export default function ADM(){
 
     {
         usuarios.map(u => (
-            <View>
-                <Text style={styles.text}>{u.nome}</Text>
-                <Text style={styles.text}>{u.curso}</Text>
-                <Text style={styles.text}>{u.RM}</Text>
-                <Text style={styles.text}>{u.email}</Text>
-                <TouchableOpacity> 
-                    <MaterialIcons name="delete" color="#FFF"/>
+            <View style={styles.container}>
+                <Text style={styles.text}>Nome : {u.nome}</Text> 
+                <Text style={styles.text}>Curso: {u.curso}</Text>
+                <Text style={styles.text}>Rm: {u.rm}</Text>
+                <Text style={styles.text}>Email: {u.email}</Text>
+                <View style ={styles.alignButton}> 
+                <TouchableOpacity style={styles.button}> 
+                    <MaterialIcons style={styles.textButtonDel} name="delete"/>
                 </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonEdit}> 
+                    <MaterialIcons style={styles.textButtonEdit} name="edit"/>
+                </TouchableOpacity> 
+                </View>
+
+
             </View>
         ))
     }
@@ -55,16 +62,69 @@ const styles = StyleSheet.create({
     backgroundColor: '#060613',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    padding:20
+    
     },
 
     scroll:{
-        flex: 1
+        flex: 1,
+        
 
     },
 
     text:{
-        color:'#FFF'
-    }
+        color:'#FFF',
+        fontSize: 20,
+        fontWeight: "bold",
+        borderWidth: 1.5,
+        borderColor: '#778899',
+        borderRadius: 5,
+        padding : 1,
+        margin: 5,
+        justifyContent:'space-between',
+        backgroundColor: '#778899'
+  
+    },
+    container:{
+        justifyContent:'space-between'
+        
+    },
+    button:{
+        marginBottom: 20,
+        width: 50,
+        height:50,
+        //backgroundColor:'#778899',
+        borderRadius: 13,
+        borderWidth: 0,
+        marginTop: 16,
+        paddingVertical: 8,
+        justifyContent:'space-between',
+        elevation: 1.5,
+        alignItems:'center'
+        
+
+    },
+    
+    textButtonDel:{
+        fontSize: 30,
+        color:'#8B0000',
+        alignItems:'center',
+        flexDirection: 'row'
+        
+    },
+    textButtonEdit:{
+        fontSize: 30,
+        color:'#006400',
+        alignItems:'center',
+        flexDirection: 'row'
+        
+    },
+  alignButton:{
+      flexDirection:'row',
+      justifyContent:'space-between',
+      alignItems:'center',
+            
+  }
 
 })
