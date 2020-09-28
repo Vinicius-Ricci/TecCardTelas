@@ -3,6 +3,7 @@ import { View, KeyboardAvoidingView,Image,TextInput, TouchableOpacity,Text,Style
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import { api } from '../util/env';
+import ADM from './adm';
 
 
 export default function Login() {
@@ -26,8 +27,12 @@ export default function Login() {
         senha:userPassword
       }).then((response) => {
         alert (` Seja Bem vindo, ${response.data.nome}`);
-        if(response.data.tipo !== "ALUNO"){
-          navigation.navigate("adm");
+        switch(response.data.tipo){
+          
+          case "ADM": navigation.navigate("adm"); break;
+          case "GUARD": navigation.navigate("guarda"); break;
+          default: navigation.navigate("perfil"); break;
+
         }
       })
       .catch((error) => {
