@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { View, KeyboardAvoidingView,Image,TextInput, TouchableOpacity,Text,StyleSheet, Animated } from 'react-native';
+import { View, KeyboardAvoidingView,TextInput, TouchableOpacity,Text,StyleSheet, Animated, ImageBackground } from 'react-native';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import { api } from '../util/env';
@@ -58,9 +58,9 @@ export default function Login() {
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
-        <Image 
-          source={require('../assets/logo-etec.png')}
-        />
+       
+        <Text style={styles.TextBemvindo}>Bem-Vindo!</Text>
+        
       </View>
 
       <Animated.View styles={[
@@ -108,7 +108,7 @@ export default function Login() {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#060613'
+    backgroundColor: '#284b63'
 
   },
   containerLogo:{
@@ -127,13 +127,13 @@ export default function Login() {
     backgroundColor: '#FFF',
     width: 300,
     marginBottom: 15,
-    color: '#222',
+    color: '#3c6e71',
     fontSize: 17,
     borderRadius: 7,
     padding: 10   
   },
   btnSubmit:{
-    backgroundColor: '#778899',
+    backgroundColor: '#3c6e71',
     width: 300,
     height: 45,
     alignItems: 'center',
@@ -149,7 +149,7 @@ export default function Login() {
   },
   btnRegister:{
     marginTop: 10,
-    backgroundColor: '#778899',
+    backgroundColor: '#3c6e71',
     width: 300,
     height: 45,
     alignItems: 'center',
@@ -163,6 +163,10 @@ export default function Login() {
   registerText:{
     color: '#FFF',
     fontSize: 18  
+  },
+  TextBemvindo:{
+    color:'#FFF',
+    fontSize: 50
   }
  });
 

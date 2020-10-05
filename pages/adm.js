@@ -59,7 +59,7 @@ export default function ADM(){
 const styles = StyleSheet.create({
 
     telaAdm:{
-    backgroundColor: '#060613',
+    backgroundColor: '#284b63',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         borderWidth: 1.5,
-        borderColor: '#778899',
+        borderColor: '#3c6e71',
         borderRadius: 5,
         padding : 1,
         margin: 5,
         justifyContent:'space-between',
-        backgroundColor: '#778899'
+        backgroundColor: '#3c6e71'
   
     },
     container:{
@@ -100,7 +100,8 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         justifyContent:'space-between',
         elevation: 1.5,
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor:'#284b63'
         
 
     },

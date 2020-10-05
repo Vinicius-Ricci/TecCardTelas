@@ -21,7 +21,7 @@ const QRcode =() => {
           //QR code value
           value={rm + ""}
           //size of QR Code
-          size={500}
+          size={300}
           //Color of the QR Code (Optional)
           color="black"
           //Background Color of the QR Code (Optional)
@@ -33,13 +33,13 @@ const QRcode =() => {
     );
   }
 
-export default QRCode;
+export default QRcode;
 const styles = StyleSheet.create({
   MainContainer: {  
     flex: 1,
-    margin: 10,
     alignItems: 'center',
     paddingTop: 40,
+    backgroundColor: '#284b63'
     
   },
 });

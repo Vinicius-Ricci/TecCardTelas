@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#060613'
+    backgroundColor: '#284b63'
 
   },
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
 
   btnSubmit:{
-    backgroundColor: '#778899',
+    backgroundColor: '#3c6e71',
     width: 300,
     height: 50,
     alignItems: "center",

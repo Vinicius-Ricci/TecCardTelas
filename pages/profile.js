@@ -23,7 +23,7 @@ const Profile =() => {
           onPress={() => navigation.navigate("qrcode")}
           activeOpacity={0.7}
           style={styles.button}>
-          <Text style={styles.TextStyle}> Generate QR Code </Text>
+          <Text style={styles.TextStyle}> Gerar QR Code </Text>
         </TouchableOpacity>
       </View>
     );
@@ -33,9 +33,9 @@ export default Profile;
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    margin: 10,
     alignItems: 'center',
     paddingTop: 40,
+    backgroundColor: '#284b63'
     
   },
   TextInputStyle: {
@@ -46,12 +46,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    width: '100%',
+    width: 200,
     paddingTop: 8,
     marginTop: 10,
     paddingBottom: 8,
     backgroundColor: '#778899',
     marginBottom: 20,
+    borderRadius: 11,
+    backgroundColor:'#3c6e71',
+    
   },
   TextStyle: {
     color: '#fff',
