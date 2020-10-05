@@ -3,12 +3,14 @@ import { View, KeyboardAvoidingView,Image,TextInput, TouchableOpacity,Text,Style
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import { api } from '../util/env';
-import ADM from './adm';
+import { useDispatch } from 'react-redux';
+import { updateDataAction } from '../store/data/action';
+
 
 
 export default function Login() {
 
-  
+    const dispatch = useDispatch();
 
     const [ offset ] = useState(new Animated.ValueXY({x: 0, y: 80}));
     const [ userName,setUserName] = useState ("");
@@ -27,6 +29,8 @@ export default function Login() {
         senha:userPassword
       }).then((response) => {
         alert (` Seja Bem vindo, ${response.data.nome}`);
+        console.log("response.data: ", response.data);
+        dispatch(updateDataAction(response.data));
         switch(response.data.tipo){
           
           case "ADM": navigation.navigate("adm"); break;
