@@ -4,6 +4,8 @@ import axios from "axios";
 import { api } from '../util/env';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {MaterialIcons} from "@expo/vector-icons";
+import Icon from 'react-native-vector-icons/MaterialIcons'
+Icon.loadFont();
 
 
 export default function ADM(){
@@ -42,6 +44,8 @@ export default function ADM(){
                 <TouchableOpacity style={styles.buttonEdit}> 
                     <MaterialIcons style={styles.textButtonEdit} name="edit"/>
                 </TouchableOpacity> 
+
+                <Icon name='add' size={30} color='#000'/>
                 </View>
 
 

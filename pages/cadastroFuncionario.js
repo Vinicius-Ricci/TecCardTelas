@@ -1,20 +1,17 @@
-/*import React,{useState,useEffect} from 'react';
+/*import React,{useState} from 'react';
 import { View, 
-    KeyboardAvoidingView,
-    Image,
     TextInput, 
     TouchableOpacity,
     Text,
     StyleSheet,
-     Animated ,
      Picker
     } from 'react-native';
     import axios from "axios";
 import { api } from '../util/env';
 import { useNavigation } from '@react-navigation/native';
-import { color } from 'react-native-reanimated';
 
-    export default function CadastroUsuario() {
+
+    export default function cadastroFuncionario() {
 
     const [ userNome,setUserNome] = useState ("");
     const [ userEmail,setUserEmail] = useState ("");

@@ -8,26 +8,25 @@ import {
   Text,
 } from 'react-native';
 // import all basic components
-import QRCode from 'react-native-qrcode-svg';
+import { QRCode } from 'react-native-custom-qr-codes-expo';
 import { useSelector } from 'react-redux';
 import { getUserRm } from '../store/data/action';
 
 const QRcode =() => {
-    const rm = useSelector(getUserRm);
+    const rm = useSelector(getUserRm).toString();
     console.log("rm: ",rm);
     return (
       <View style={styles.MainContainer}>
+        <View style={styles.qrcodeContainer}>
+
         <QRCode
-          //QR code value
-          value={rm + ""}
-          //size of QR Code
+          content={rm}
           size={300}
-          //Color of the QR Code (Optional)
-          color="black"
-          //Background Color of the QR Code (Optional)
-          backgroundColor="white"
-          //Logo of in the center of QR Code (Optional)
+          ecl ="M"
+          backgroundColor ='#FFF'
         />
+
+        </View>
        
       </View>
     );
@@ -42,4 +41,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#284b63'
     
   },
+  qrcodeContainer:{
+    backgroundColor: '#FFF',
+    padding: 10
+  }
 });

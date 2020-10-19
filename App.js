@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import QRCode from './pages/QR';
 
+
 const Stack = createStackNavigator();
 
 

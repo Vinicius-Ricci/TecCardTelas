@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { View, KeyboardAvoidingView,TextInput, TouchableOpacity,Text,StyleSheet, Animated, ImageBackground } from 'react-native';
+import { View, KeyboardAvoidingView,TextInput, TouchableOpacity,Text,StyleSheet, Animated, Image } from 'react-native';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import { api } from '../util/env';
@@ -58,9 +58,9 @@ export default function Login() {
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
-       
-        <Text style={styles.TextBemvindo}>Bem-Vindo!</Text>
-        
+        <Image 
+          source={require('../assets/TecCard200x200.png')}
+        />
       </View>
 
       <Animated.View styles={[

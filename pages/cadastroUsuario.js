@@ -12,6 +12,7 @@ import { View,
 import { api } from '../util/env';
 import { useNavigation } from '@react-navigation/native';
 import { color } from 'react-native-reanimated';
+import {Picker} from '@react-native-community/picker';
 
     export default function CadastroUsuario() {
 
