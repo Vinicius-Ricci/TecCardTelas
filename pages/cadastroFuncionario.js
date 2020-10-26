@@ -1,36 +1,37 @@
-/*import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { View, 
+    KeyboardAvoidingView,
+    Image,
     TextInput, 
     TouchableOpacity,
     Text,
     StyleSheet,
-     Picker
+     Animated 
     } from 'react-native';
     import axios from "axios";
 import { api } from '../util/env';
 import { useNavigation } from '@react-navigation/native';
+import { color } from 'react-native-reanimated';
+import {Picker} from '@react-native-community/picker';
 
+    export default function CadastroFuncionario() {
 
-    export default function cadastroFuncionario() {
-
-    const [ userNome,setUserNome] = useState ("");
-    const [ userEmail,setUserEmail] = useState ("");
-    const [ userSenha,setUserSenha] = useState ("");
-    const [ userPermissao,setUserPermissao] = useState ("");
+    const [ funcNome,setFuncNome] = useState ("");
+    const [ funcEmail,setFuncEmail] = useState ("");
+    const [ funcSenha,setFuncSenha] = useState ("");
     const navigation =  useNavigation();
 
     const signUp = () => {
       axios.post(api("usuario"), { 
-        email:userEmail,
-        senha:userSenha,
-        nome:userNome,
-        permissao:userPermissao
+        email:funcEmail,
+        senha:funcSenha,
+        nome:funcNome
       }).then((response) => navigation.goBack())
       .catch((error) => {
         console.log("error => ", error);
         const { response } = error;
         if (response !== undefined){
-          alert (response.data.message);
+          //alert (response.data.message);
         }
         else alert (`Nao foi possivel criar funcionario`);
      })
@@ -40,40 +41,28 @@ return (
 <View style={styles.background}>
 
   <TextInput
-  value = {userNome}
+  value = {funcNome}
   style={styles.input}
   placeholder="Nome"
   autoCorrect={false}
-  onChangeText={(value) => setUserNome(value)}
+  onChangeText={(value) => setFuncNome(value)}
 />
 
 <TextInput
-  value = {userEmail}
+  value = {funcEmail}
   style={styles.input}
   placeholder="Email"
   autoCorrect={false}
-  onChangeText={(value) => setUserEmail(value)}
+  onChangeText={(value) => setFuncEmail(value)}
 />
 
 <TextInput
-  value = {userSenha}
+  value = {funcSenha}
   style={styles.input}
   placeholder="Senha"
   autoCorrect={false}
-  onChangeText={(value) => setUserSenha(value)}
+  onChangeText={(value) => setFuncSenha(value)}
 />
-
-<Picker style={styles.Piker}
- selectedValue={selectedValue}
- style={{ height: 50, width: 150 }}
- onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
->
- <Picker.Item label="Administrador" value="administrador" />
- <Picker.Item label="Portaria" value="portaria" />
- onChangeText={(value) => setUserPermissao(value)}
-</Picker>
-  
-
 
 <TouchableOpacity style={styles.btnSubmit} onPress={signUp}>
             <Text style={styles.btnText}> Salvar </Text>
@@ -89,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#060613'
+    backgroundColor: '#284b63'
 
   },
 
@@ -104,7 +93,7 @@ const styles = StyleSheet.create({
   },
 
   btnSubmit:{
-    backgroundColor: '#778899',
+    backgroundColor: '#3c6e71',
     width: 300,
     height: 50,
     alignItems: "center",
@@ -118,16 +107,6 @@ const styles = StyleSheet.create({
   btnText:{
     color: '#FFF',
     fontSize: 18
-  },
-  Piker:{
-    backgroundColor: '#FFF',
-    width: 300,
-    marginBottom: 15,
-    color: '#222',
-    fontSize: 17,
-    borderRadius: 7,
-    padding: 10   
   }
 
 });
-*/

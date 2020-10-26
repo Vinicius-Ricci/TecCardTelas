@@ -1,14 +1,19 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useRef,useState } from 'react';
 import {View,Text,StyleSheet,ScrollView} from "react-native";
 import axios from "axios";
 import { api } from '../util/env';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {MaterialIcons} from "@expo/vector-icons";
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import CadastroUsuario from './cadastroFuncionario';
+import { useNavigation } from '@react-navigation/native';
 Icon.loadFont();
 
 
 export default function ADM(){
+    const navigation =  useNavigation();
+    const started = useRef(false);
+    const signUp = () => navigation.navigate("cadastroFuncionario");
     const [usuarios,setUsuarios]=useState([]);
     const listUsers = () => {
         axios.get( api("usuario/list")).then((response) => {
@@ -24,15 +29,29 @@ export default function ADM(){
           else alert (`Nao foi possivel processar os usuarios`);
        })
       }; 
-    useEffect(() => listUsers())
+    useEffect(() => {
+         if(started.current)
+         return;
+         started.current = true;
+         listUsers()
+
+    })
     return (
 <View style={styles.telaAdm}>
 
-<ScrollView style={styles.scroll}>
+<View style={styles.addFuncionario}>
+
+<TouchableOpacity onPress={signUp}>
+<Text style={styles.addText}> Clique para adiconar um funcionario </Text>
+</TouchableOpacity>
+
+</View>
+
+<ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 
     {
         usuarios.map(u => (
-            <View style={styles.container}>
+            <View key={u.rm} style={styles.container}>
                 <Text style={styles.text}>Nome : {u.nome}</Text> 
                 <Text style={styles.text}>Curso: {u.curso}</Text>
                 <Text style={styles.text}>Rm: {u.rm}</Text>
@@ -41,11 +60,10 @@ export default function ADM(){
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonDel} name="delete"/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonEdit}> 
+                <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonEdit} name="edit"/>
                 </TouchableOpacity> 
 
-                <Icon name='add' size={30} color='#000'/>
                 </View>
 
 
@@ -67,12 +85,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding:20
+    
     
     },
 
     scroll:{
         flex: 1,
+        width: 350,
+        margin: 10
         
 
     },
@@ -96,14 +116,9 @@ const styles = StyleSheet.create({
     },
     button:{
         marginBottom: 20,
-        width: 50,
-        height:50,
-        borderRadius: 13,
-        borderWidth: 0,
         marginTop: 16,
         paddingVertical: 8,
         justifyContent:'space-between',
-        elevation: 1.5,
         alignItems:'center',
         backgroundColor:'#284b63'
         
@@ -119,7 +134,7 @@ const styles = StyleSheet.create({
     },
     textButtonEdit:{
         fontSize: 30,
-        color:'#006400',
+        color:'#fdc500',
         alignItems:'center',
         flexDirection: 'row'
         
@@ -129,6 +144,27 @@ const styles = StyleSheet.create({
       justifyContent:'space-between',
       alignItems:'center',
             
-  }
+  },
+  addFuncionario:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#D9D9D9',
+      width: '110%',
+      height: 50
+      
+      
 
+  },
+  addText:{
+      fontSize: 20,
+      color: '#353535',
+      textAlign: 'center'
+  },
+  addIcon:{
+      margin: 5,
+      fontSize: 25,
+      color: '#353535'
+  }
+ 
 })

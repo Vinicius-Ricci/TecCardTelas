@@ -2,10 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button,TextInput } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from "axios";
+import { api } from '../util/env';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+
+  const validate = (RM) => {
+    axios.post( api("acesso/validate"), { 
+      RM: RM
+      
+    }).then((response) => {
+      alert (` Resultado da validação: ${response.data.descricao}`);
+    })
+    .catch((error) => {
+      const { response } = error;
+      if (response !== undefined){
+        alert (response.data.message);
+      }
+      else alert (`Nao foi possivel validar`);
+   })
+  }; 
 
   useEffect(() => {
     (async () => {
@@ -16,7 +34,7 @@ export default function App() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`O seu RM é ${data}`);
+    validate(data);
   };
 
   if (hasPermission === null) {
@@ -46,8 +64,11 @@ export default function App() {
       </View>
       {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
 
+      <View style={styles.textContainer}>
 
       <Text style={styles.textAviso}> Caso o Scanner não funcionar, consulte manualmente abaixo: </Text>
+
+      </View>
       <View style={styles.containerInput}>
 
       <TextInput style={styles.rmInput} 
@@ -77,18 +98,16 @@ export default function App() {
 const styles = StyleSheet.create({
 
   containerCamera:{
-    flex: 2,
-    
-    
+    flex: 1,
+    marginTop: 20,
   },
 
   containerInput:{
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
-    flexDirection: 'row'
-    
-
+    flexDirection: 'row',
+    paddingTop: 15
   },
 
   rmInput:{
@@ -102,12 +121,12 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 5
   },
+
   TextInput:{
     color:'#FFF',
     fontStyle:'italic',
-    fontWeight: 'bold'
-    
   },
+
   botao:{
     width: 110,
     height: 40,
@@ -116,24 +135,34 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
     alignItems: 'center',
-    margin: 10
-    
-    
-    
+    margin: 10 
   },
+
   textBotao:{
     flex: 1,
     textAlign: 'center',
     justifyContent: 'center',
     color: '#FFF',
     padding: 2,
-    fontStyle:'italic'
   },
+
   textAviso:{
     margin: 10,
     fontStyle: 'italic',
     color: '#FFF',
     textAlign: 'center',
     justifyContent:'center'
+  },
+
+  camera:{
+    marginTop: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 10
+  },
+
+  textContainer:{
+    marginTop: 20,
+    justifyContent: 'flex-end', 
   }
 })
