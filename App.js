@@ -26,7 +26,7 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator initialRouteName = {"login"}>
       <Stack.Screen name="cadastroUsuario" options={{headerShown: false}} component={CadastroUsuario}/>
-      <Stack.Screen name="cadastroFuncionario" options={{title: "Cadastro Funcionario"}} component={CadastroFuncionario}/>
+      <Stack.Screen name="cadastroFuncionario" options={{title: "Cadastro de Funcionario"}} component={CadastroFuncionario}/>
       <Stack.Screen name="login" options={{headerShown: false}} component={Login}/>
       <Stack.Screen name="adm" options={{title: "Administração"}} component={ADM} Icon={add}/>
       <Stack.Screen name="perfil" options={{title: "Perfil do Aluno"}} component={PERFIL}/>

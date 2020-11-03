@@ -1,5 +1,5 @@
 import React, { useEffect,useRef,useState } from 'react';
-import {View,Text,StyleSheet,ScrollView} from "react-native";
+import {View,Text,StyleSheet,ScrollView, Switch} from "react-native";
 import axios from "axios";
 import { api } from '../util/env';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -60,6 +60,11 @@ export default function ADM(){
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonDel} name="delete"/>
                 </TouchableOpacity>
+                <Switch 
+                value={false}
+                onValueChange={""}
+
+                />
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonEdit} name="edit"/>
                 </TouchableOpacity> 

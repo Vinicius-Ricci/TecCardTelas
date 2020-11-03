@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useEffect,useState } from '@react-navigation/native';
 //This is an example code to generate QR code//
 import React, { Component } from 'react';
 //import react in our code.
@@ -7,18 +7,58 @@ import {
   View,
   TouchableOpacity,
   Text,
+  Platform,
+  Image
 } from 'react-native';
+import Constants from 'expo-constants';
+import * as ImagePicker from 'expo-image-picker';
 // import all basic components
 import QRCode from 'react-native-qrcode-svg';
 import { useSelector } from 'react-redux';
 import { getUserRm } from '../store/data/action';
 
-const Profile =() => {
+
+export default Profile =() => {
+  const [selectImg, setSelectedImg] = React.useState(null)
+
+  let openImage = async () =>{
+    let permission = await ImagePicker.requestCameraRollPermissionsAsync();
+
+
+    if(permission.granted === false){
+      return;
+    }
+
+    let picker = await ImagePicker.launchImageLibraryAsync()
+
+    if(picker.cancelled === true ){
+      return;
+    }
+    setSelectedImg({localUri:picker.uri})
+    console.log(picker)
+  }
+
     const navigation = useNavigation();
     return (
       <View style={styles.MainContainer}>
-        
-       
+        {
+          selectImg !== null ?
+          (
+            <Image 
+
+            style={styles.image} source={{uri:(selectImg.localUri !== null) ? selectImg.localUri : 'https://cdn.pixabay.com/photo/2015/09/02/12/58/woman-918788_960_720.jpg'}}
+            />
+          ): <Text>  </Text>
+        }
+    <View stle={styles.container}>
+      <TouchableOpacity 
+      onPress={openImage}
+      style={styles.Click}
+      >
+        <Text style={styles.textButton}> Adicione/Altere sua foto de perfil </Text>
+      </TouchableOpacity>
+    </View>
+
         <TouchableOpacity
           onPress={() => navigation.navigate("qrcode")}
           activeOpacity={0.7}
@@ -28,8 +68,6 @@ const Profile =() => {
       </View>
     );
   }
-
-export default Profile;
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
@@ -61,4 +99,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 18,
   },
+  Click:{
+    borderRadius: 10,
+    backgroundColor:'#3c6e71',
+    margin: 10,
+    width: 315,
+    height: 40
+
+
+  },
+  textButton:{
+
+    fontSize: 20,
+    color: '#FFF',
+    textAlign: 'center',
+    margin: 5
+  },
+  image:{
+    width: 350,
+    height: 250,
+    resizeMode:'contain',
+    borderRadius: 300,
+    justifyContent: 'center'
+  },
+
 });
