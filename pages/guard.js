@@ -117,12 +117,13 @@ const styles = StyleSheet.create({
     width: 110,
     height: 40,
     borderRadius: 17,
-    backgroundColor:'#2b2d42',
+    backgroundColor:'#353535',
     flexDirection: 'row',
     marginTop: 10,
     alignItems: 'center',
     margin: 10,
-    padding: 5
+    padding: 5,
+    elevation: 10
   },
 
   TextInput:{
@@ -134,11 +135,12 @@ const styles = StyleSheet.create({
     width: 110,
     height: 40,
     borderRadius: 17,
-    backgroundColor:'#2b2d42',
+    backgroundColor:'#353535',
     flexDirection: 'row',
     marginTop: 10,
     alignItems: 'center',
-    margin: 10 
+    margin: 10 ,
+    elevation: 10
   },
 
   textBotao:{

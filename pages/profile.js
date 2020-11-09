@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 11,
     backgroundColor:'#3c6e71',
+    elevation: 7
     
   },
   TextStyle: {
@@ -119,7 +120,8 @@ const styles = StyleSheet.create({
     backgroundColor:'#3c6e71',
     margin: 10,
     width: 315,
-    height: 40
+    height: 40,
+    elevation: 7
 
 
   },
@@ -135,6 +137,7 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode:'contain',
     borderRadius: 300,
+    
 
 
     

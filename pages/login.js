@@ -134,7 +134,10 @@ export default function Login() {
     color: '#3c6e71',
     fontSize: 17,
     borderRadius: 7,
-    padding: 10   
+    padding: 10   ,
+    elevation: 7,
+    borderColor: '#353535',
+    borderWidth: 2,
   },
   btnSubmit:{
     backgroundColor: '#3c6e71',
@@ -143,7 +146,8 @@ export default function Login() {
     alignItems: 'center',
     borderRadius: 7,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    elevation: 7
 
 
   },

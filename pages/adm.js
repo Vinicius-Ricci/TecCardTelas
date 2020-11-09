@@ -14,6 +14,7 @@ export default function ADM(){
     const navigation =  useNavigation();
     const started = useRef(false);
     const signUp = () => navigation.navigate("cadastroFuncionario");
+    const signIn = () => navigation.navigate("calendario");
     const [usuarios,setUsuarios]=useState([]);
     const listUsers = () => {
         axios.get( api("usuario/list")).then((response) => {
@@ -78,11 +79,9 @@ export default function ADM(){
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonDel} name="delete"/>
                 </TouchableOpacity>
-                <Switch 
-                value={false}
-                onValueChange={""}
-
-                />
+              <TouchableOpacity style={styles.btnCalenadrio} onPress={signIn}>
+                  <Text style={styles.txtCalen}> Setar data Inicio/Fim </Text>
+              </TouchableOpacity>
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonEdit} name="edit"/>
                 </TouchableOpacity> 
@@ -127,10 +126,14 @@ const styles = StyleSheet.create({
         borderWidth: 1.5,
         borderColor: '#3c6e71',
         borderRadius: 5,
-        padding : 1,
+        padding : 5,
         margin: 5,
         justifyContent:'space-between',
-        backgroundColor: '#3c6e71'
+        backgroundColor: '#3c6e71',
+        borderColor: '#D9D9D9',
+        borderWidth: 1,
+        elevation: 20,
+        fontStyle:'italic'
   
     },
     container:{
@@ -152,14 +155,16 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color:'#8B0000',
         alignItems:'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        elevation: 7
         
     },
     textButtonEdit:{
         fontSize: 30,
         color:'#fdc500',
         alignItems:'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        elevation: 7
         
     },
   alignButton:{
@@ -174,7 +179,10 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       backgroundColor: '#D9D9D9',
       width: '110%',
-      height: 50
+      height: 50,
+      elevation: 20,
+      borderColor: '#353535',
+      borderWidth: 2,
       
       
 
@@ -188,6 +196,21 @@ const styles = StyleSheet.create({
       margin: 5,
       fontSize: 25,
       color: '#353535'
+  },
+  btnCalenadrio:{
+      backgroundColor: '#353535',
+      height: 30,
+      borderRadius: 7,
+      justifyContent: 'center',
+      elevation: 7,
+      borderColor: '#D9D9D9',
+      borderWidth: 1,
+
+
+  },
+  txtCalen:{
+      color: '#FFF',
+      fontSize: 15
   }
  
 })

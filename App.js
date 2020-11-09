@@ -12,6 +12,7 @@ import { store } from './store';
 import QRCode from './pages/QR';
 import { add } from 'react-native-reanimated';
 import CadastroFuncionario from './pages/cadastroFuncionario';
+import calendario from './pages/calendario';
 
 
 
@@ -25,6 +26,7 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer>
     <Stack.Navigator initialRouteName = {"login"}>
+      <Stack.Screen name="calendario" options={{title:"Setar data Inicio/Fim"}} component={calendario}/>
       <Stack.Screen name="cadastroUsuario" options={{title:"Criar conta"}} component={CadastroUsuario}/>
       <Stack.Screen name="cadastroFuncionario" options={{title: "Cadastro de Funcionario"}} component={CadastroFuncionario}/>
       <Stack.Screen name="login" options={{headerShown: false}} component={Login}/>
