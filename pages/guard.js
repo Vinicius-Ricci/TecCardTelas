@@ -4,10 +4,12 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import axios from "axios";
 import { api } from '../util/env';
+import { event } from 'react-native-reanimated';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [query, setQuery] = useState("");
 
   const validate = (RM) => {
     axios.post( api("acesso/validate"), { 
@@ -75,13 +77,14 @@ export default function App() {
 
       keyboardType = "number-pad" 
       placeholder='Digite um Rm'
+      value={query}
+      onChange={text => setQuery(text)}
       
-      > 
+      /> 
 
-      
-      </TextInput>
+    
 
-      <TouchableOpacity style={styles.botao}> 
+      <TouchableOpacity style={styles.botao} onPress={() => validate(parseInt(query))}> 
 
         <Text style={styles.textBotao}> Consultar </Text>
 

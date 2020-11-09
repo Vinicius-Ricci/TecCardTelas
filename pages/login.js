@@ -13,6 +13,16 @@ export default function Login() {
     const dispatch = useDispatch();
 
     const [ offset ] = useState(new Animated.ValueXY({x: 0, y: 80}));
+
+    useEffect(() => {
+      Animated.spring(offset.y, {
+        toValue: 0,
+        speed: 4,
+        bounciness: 30,
+        useNativeDriver: true
+      }).start();
+    }, []);
+
     const [ userName,setUserName] = useState ("");
     const [ userPassword,setUserPassword] = useState ("");
     const navigation =  useNavigation();
@@ -48,13 +58,7 @@ export default function Login() {
      })
     }; 
     //Tela inicial 
-    useEffect(() => {
-      Animated.spring(offset.y, {
-        toValue: 0,
-        speed: 4,
 
-      }).start();
-    }, []);
   return (
     <KeyboardAvoidingView style={styles.background}>
       <View style={styles.containerLogo}>
@@ -94,7 +98,7 @@ export default function Login() {
 
           
           <TouchableOpacity style={styles.btnRegister} onPress={signUp}>
-            <Text style={styles.registerText}> Criar </Text>
+            <Text style={styles.registerText}> Criar conta gratuita </Text>
           </TouchableOpacity>
       </Animated.View>
     </KeyboardAvoidingView>
@@ -149,20 +153,17 @@ export default function Login() {
   },
   btnRegister:{
     marginTop: 10,
-    backgroundColor: '#3c6e71',
-    width: 300,
-    height: 45,
     alignItems: 'center',
-    borderRadius: 7,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
     
 
   },
 
   registerText:{
     color: '#FFF',
-    fontSize: 18  
+    fontSize: 18 ,
+    fontStyle:'italic' 
   },
   TextBemvindo:{
     color:'#FFF',

@@ -16,9 +16,20 @@ import * as ImagePicker from 'expo-image-picker';
 import QRCode from 'react-native-qrcode-svg';
 import { useSelector } from 'react-redux';
 import { getUserRm } from '../store/data/action';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default Profile =() => {
+
+/*  
+componentDidMount(){
+  alert('Alguma coisa')
+}
+
+componentDidUpdate(_,prevState){
+  alert('Alguma coisa ')
+}
+*/
+
   const [selectImg, setSelectedImg] = React.useState(null)
 
   let openImage = async () =>{
@@ -40,6 +51,7 @@ export default Profile =() => {
 
     const navigation = useNavigation();
     return (
+
       <View style={styles.MainContainer}>
         {
           selectImg !== null ?
@@ -73,7 +85,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: 40,
-    backgroundColor: '#284b63'
+    backgroundColor: '#284b63',
+    
+
+    
     
   },
   TextInputStyle: {
@@ -100,7 +115,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   Click:{
-    borderRadius: 10,
+    borderRadius: 11,
     backgroundColor:'#3c6e71',
     margin: 10,
     width: 315,
@@ -120,7 +135,9 @@ const styles = StyleSheet.create({
     height: 250,
     resizeMode:'contain',
     borderRadius: 300,
-    justifyContent: 'center'
+
+
+    
   },
 
 });

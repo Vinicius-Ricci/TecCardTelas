@@ -29,6 +29,24 @@ export default function ADM(){
           else alert (`Nao foi possivel processar os usuarios`);
        })
       }; 
+
+/*      const GrantAccess = () => {
+        axios.post( api("acesso/grant"), {
+            rm:
+        }).then((response) => {
+        
+            setUsuarios(response.data);
+    
+        })
+        .catch((error) => {
+          const { response } = error;
+          if (response !== undefined){
+            alert (response.data.message);
+          }
+          else alert (`Nao foi possivel processar os usuarios`);
+       })
+      }; 
+*/
     useEffect(() => {
          if(started.current)
          return;
