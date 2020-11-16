@@ -14,7 +14,7 @@ export default function ADM(){
     const navigation =  useNavigation();
     const started = useRef(false);
     const signUp = () => navigation.navigate("cadastroFuncionario");
-    const signIn = () => navigation.navigate("calendario");
+    const goToAccess = (rm) => navigation.navigate("calendario", {rm});
     const [usuarios,setUsuarios]=useState([]);
     const listUsers = () => {
         axios.get( api("usuario/list")).then((response) => {
@@ -79,8 +79,8 @@ export default function ADM(){
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonDel} name="delete"/>
                 </TouchableOpacity>
-              <TouchableOpacity style={styles.btnCalenadrio} onPress={signIn}>
-                  <Text style={styles.txtCalen}> Setar data Inicio/Fim </Text>
+              <TouchableOpacity style={styles.btnCalenadrio} onPress={() => goToAccess(u.rm)}>
+                  <Text style={styles.txtCalen}> Liberar saida </Text>
               </TouchableOpacity>
                 <TouchableOpacity style={styles.button}> 
                     <MaterialIcons style={styles.textButtonEdit} name="edit"/>

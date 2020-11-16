@@ -12,6 +12,7 @@ export default function App() {
   const [query, setQuery] = useState("");
 
   const validate = (RM) => {
+    console.log('validando acesso =>', RM);
     axios.post( api("acesso/validate"), { 
       RM: RM
       
@@ -47,7 +48,7 @@ export default function App() {
   }
   
 
-
+console.log(query);
   return (
     <View
       style={{
@@ -78,7 +79,7 @@ export default function App() {
       keyboardType = "number-pad" 
       placeholder='Digite um Rm'
       value={query}
-      onChange={text => setQuery(text)}
+      onChangeText={text => setQuery(text)}
       
       /> 
 

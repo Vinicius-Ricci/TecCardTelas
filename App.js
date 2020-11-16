@@ -26,7 +26,7 @@ export default function App() {
     <Provider store={store}>
     <NavigationContainer>
     <Stack.Navigator initialRouteName = {"login"}>
-      <Stack.Screen name="calendario" options={{title:"Setar data Inicio/Fim"}} component={calendario}/>
+      <Stack.Screen name="calendario" options={{title:"Liberação de saida"}} component={calendario}/>
       <Stack.Screen name="cadastroUsuario" options={{title:"Criar conta"}} component={CadastroUsuario}/>
       <Stack.Screen name="cadastroFuncionario" options={{title: "Cadastro de Funcionario"}} component={CadastroFuncionario}/>
       <Stack.Screen name="login" options={{headerShown: false}} component={Login}/>

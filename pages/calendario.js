@@ -5,37 +5,69 @@ import { api } from '../util/env';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {MaterialIcons} from "@expo/vector-icons";
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import DatePicker from 'react-native-datepicker';
 import { render } from 'react-dom';
 
 export default function calendario(){
 
     const navigation =  useNavigation();
-    const signUp = () => navigation.navigate("calendario");
+    const route = useRoute();
+    const save = () => {
+        axios.post( api("acesso/grant"), { 
+            rm: route.params.rm,
+            descricao: allowed?"Liberado":"Nao esta liberado!",
+            dataInicio: dataInicio.replace(/(\d{2})\/(\d{2})\/(\d{4})/,"$3-$2-$1"),
+            dataFim: dataFim.replace(/(\d{2})\/(\d{2})\/(\d{4})/,"$3-$2-$1")
+          }).then((response) => {
+            alert (` Liberação de acesso alterada com sucesso! `);
+            navigation.navigate("adm");
+     
+          })
+          .catch((error) => {
+            const { response } = error;
+            if (response !== undefined){
+              alert (response.data.message);
+            }
+            else alert (`Não foi possivel alterar a liberação de acesso!`);
+         })
+        
+    }
+    const [allowed, setAllowed] = useState(false);
+    const [dataInicio, setDataInicio] = useState("");
+    const [dataFim, setDataFim] = useState("");
+
 
 
     
         return(
             <View style={styles.container}>
-
+                
+                <Text style={styles.txtHabilitar}>Habilitar Aluno</Text>
+                <Switch
+                onValueChange={(value) => setAllowed(value)}
+                value={allowed}
+                style={styles.switch}
+                />
                 <Text style={styles.txt}> Data Inicio </Text> 
                 <DatePicker
                 format="DD/MM/YYYY"
                 style={styles.dateComponet}
-                date={""}
-                onDateChange={''}
+                date={dataInicio}
+                onDateChange={(value) => setDataInicio(value)}
+            
                 />
 
                 <Text style={styles.txt}> Data Fim </Text> 
                 <DatePicker
                 format="DD/MM/YYYY"
                 style={styles.dateComponet}
-                date={""}
-                onDateChange={''}
+                date={dataFim}
+                onDateChange={(value) => setDataFim(value)}
+
                 />
 
-                <TouchableOpacity style={styles.btnSalvar} onPress={""}>
+                <TouchableOpacity style={styles.btnSalvar} onPress={save}>
                     <Text style={styles.btn}> Salvar </Text>
                 </TouchableOpacity>
             </View>
@@ -84,6 +116,15 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 20
       
+    },
+    txtHabilitar:{
+        fontSize: 20,
+        color:'#FFF',
+        fontWeight: 'bold',
+        marginTop: 10
+    },
+    switch:{
+        margin: 10
     }
     
 });

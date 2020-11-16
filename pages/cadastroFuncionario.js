@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
     color: '#222',
     fontSize: 17,
     borderRadius: 7,
-    padding: 10   
+    padding: 10,
+    elevation: 7   
   },
 
   btnSubmit:{
@@ -101,9 +102,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
-    elevation: 1.5
+    elevation: 7
       
   },
+  
   btnText:{
     color: '#FFF',
     fontSize: 18
