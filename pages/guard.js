@@ -4,7 +4,6 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import axios from "axios";
 import { api } from '../util/env';
-import { event } from 'react-native-reanimated';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);

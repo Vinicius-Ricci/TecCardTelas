@@ -1,11 +1,9 @@
 //This is an example code to generate QR code//
-import React, { Component } from 'react';
+import React, { } from 'react';
 //import react in our code.
 import {
   StyleSheet,
   View,
-  TouchableOpacity,
-  Text,
 } from 'react-native';
 // import all basic components
 import { QRCode } from 'react-native-custom-qr-codes-expo';

@@ -1,12 +1,10 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect, useRef} from 'react';
 import { View, 
-    KeyboardAvoidingView,
-    Image,
     TextInput, 
     TouchableOpacity,
     Text,
     StyleSheet,
-     Animated 
+    
     } from 'react-native';
     import axios from "axios";
 import { api } from '../util/env';
@@ -21,6 +19,7 @@ import {Picker} from '@react-native-community/picker';
     const [ userEmail,setUserEmail] = useState ("");
     const [ userSenha,setUserSenha] = useState ("");
     const [ userCurso,setUserCurso] = useState ("");
+    const [cursos, setCursos] = useState([]);
     const navigation =  useNavigation();
 
     const signUp = () => {
@@ -41,6 +40,31 @@ import {Picker} from '@react-native-community/picker';
      })
     }; 
 
+    const loadCurso = () => {
+      axios.get(api("curso")).then((response) => {
+        console.log('cursos ', response);
+        setCursos(response.data)
+      })
+      .catch((error) => {
+        console.log("error => ", error);
+        const { response } = error;
+        if (response !== undefined){
+          alert (response.data.message);
+        }
+        else alert (`Nao foi possivel listar os cursos`);
+     })
+    };
+     
+    const started = useRef(false);
+    useEffect(() => {
+      if(started.current){
+        return;
+      }
+      started.current = true;
+      loadCurso();
+    })
+
+    const itens = cursos.map(c => (<Picker.Item key={c.id} label={c.name} value={c.id} />));
 return (
 <View style={styles.background}>
 
@@ -77,13 +101,15 @@ return (
   onChangeText={(value) => setUserSenha(value)}
 />
 
-<TextInput
-  value = {userCurso}
-  style={styles.input}
-  placeholder="Curso"
-  autoCorrect={false}
-  onChangeText={(value) => setUserCurso(value)}
-/>
+<Picker selectedValue={userCurso} onValueChange={(itemValue) => setUserCurso(itemValue)} style={styles.picker}>
+
+  {
+    itens
+  }
+
+</Picker>
+
+
 
 <TouchableOpacity style={styles.btnSubmit} onPress={signUp}>
             <Text style={styles.btnText}> Salvar </Text>
@@ -125,13 +151,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
-    elevation: 10
+    elevation: 10,
+    margin: 25
       
   },
   btnText:{
     color: '#FFF',
     fontSize: 18
-  }
+  },
 
+  picker:{
+    width: 300,
+    backgroundColor: '#FFF',
+    height: 50,
+    borderRadius: 7,
+    padding: 10,
+    borderColor: '#353535',
+    elevation: 10,
+  
+  },
 });
 

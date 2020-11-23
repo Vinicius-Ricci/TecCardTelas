@@ -1,11 +1,10 @@
 import React, { useEffect,useRef,useState } from 'react';
-import {View,Text,StyleSheet,ScrollView, Switch} from "react-native";
+import {View,Text,StyleSheet,ScrollView} from "react-native";
 import axios from "axios";
 import { api } from '../util/env';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {MaterialIcons} from "@expo/vector-icons";
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import CadastroUsuario from './cadastroFuncionario';
 import { useNavigation } from '@react-navigation/native';
 Icon.loadFont();
 
@@ -58,13 +57,7 @@ export default function ADM(){
     return (
 <View style={styles.telaAdm}>
 
-<View style={styles.addFuncionario}>
 
-<TouchableOpacity onPress={signUp}>
-<Text style={styles.addText}> Clique para adiconar um funcionario </Text>
-</TouchableOpacity>
-
-</View>
 
 <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
 
@@ -76,16 +69,14 @@ export default function ADM(){
                 <Text style={styles.text}>Rm: {u.rm}</Text>
                 <Text style={styles.text}>Email: {u.email}</Text>
                 <View style ={styles.alignButton}> 
-                <TouchableOpacity style={styles.button}> 
-                    <MaterialIcons style={styles.textButtonDel} name="delete"/>
-                </TouchableOpacity>
+
+              <View style={{justifyContent: "center", margin: 15,}}>
+
               <TouchableOpacity style={styles.btnCalenadrio} onPress={() => goToAccess(u.rm)}>
                   <Text style={styles.txtCalen}> Liberar saida </Text>
               </TouchableOpacity>
-                <TouchableOpacity style={styles.button}> 
-                    <MaterialIcons style={styles.textButtonEdit} name="edit"/>
-                </TouchableOpacity> 
 
+                </View>  
                 </View>
 
 
@@ -205,6 +196,7 @@ const styles = StyleSheet.create({
       elevation: 7,
       borderColor: '#D9D9D9',
       borderWidth: 1,
+      
 
 
   },

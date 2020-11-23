@@ -1,18 +1,14 @@
-import React,{useState,useEffect} from 'react';
-import { View, 
-    KeyboardAvoidingView,
-    Image,
+import React,{useState} from 'react';
+import { View,  
     TextInput, 
     TouchableOpacity,
     Text,
     StyleSheet,
-     Animated 
+   
     } from 'react-native';
     import axios from "axios";
 import { api } from '../util/env';
 import { useNavigation } from '@react-navigation/native';
-import { color } from 'react-native-reanimated';
-import {Picker} from '@react-native-community/picker';
 
     export default function CadastroFuncionario() {
 

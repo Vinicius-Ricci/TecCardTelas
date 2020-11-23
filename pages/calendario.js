@@ -1,13 +1,11 @@
-import React, { useEffect,useRef,useState } from 'react';
-import {View,Text,StyleSheet,ScrollView, Switch} from "react-native";
+import React, { useState } from 'react';
+import {View,Text,StyleSheet, Switch} from "react-native";
 import axios from "axios";
 import { api } from '../util/env';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {MaterialIcons} from "@expo/vector-icons";
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import DatePicker from 'react-native-datepicker';
-import { render } from 'react-dom';
+
 
 export default function calendario(){
 

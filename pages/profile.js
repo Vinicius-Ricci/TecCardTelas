@@ -1,22 +1,19 @@
-import { useNavigation,useEffect,useState } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 //This is an example code to generate QR code//
-import React, { Component } from 'react';
+import React, {} from 'react';
 //import react in our code.
 import {
   StyleSheet,
   View,
   TouchableOpacity,
   Text,
-  Platform,
+ 
   Image
 } from 'react-native';
-import Constants from 'expo-constants';
+
 import * as ImagePicker from 'expo-image-picker';
 // import all basic components
-import QRCode from 'react-native-qrcode-svg';
-import { useSelector } from 'react-redux';
-import { getUserRm } from '../store/data/action';
-import AsyncStorage from '@react-native-community/async-storage';
+
 
 export default Profile =() => {
 
